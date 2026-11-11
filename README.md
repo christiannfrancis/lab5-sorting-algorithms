@@ -1,8 +1,8 @@
 # Sorting Algorithms in C++ 
 
 ### Team Members & Algorithms: 
-Christian Francis: Insertion Sort, Heap Sort
-David Cunha: Bubble Sort, Merge Sort
+Christian Francis: Insertion Sort, Heap Sort | 
+David Cunha: Bubble Sort, Merge Sort | 
 Erela Braddom: Selection Sort, Quick Sort
 
 ### Project Overview: 
