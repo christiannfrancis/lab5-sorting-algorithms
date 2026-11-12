@@ -10,7 +10,8 @@
 #include "myheaders.h"
 #include "Christian/insertionSort.h"
 #include "Christian/heapSort.h"
-
+#include "David/bubblesort.h" 
+#include "David/mergesort.h" 
 
 using namespace std;
 
