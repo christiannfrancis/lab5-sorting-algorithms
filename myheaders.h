@@ -2,11 +2,15 @@
 #define MYHEADERS_H
 
 #include <string>
-
+#include <unistd.h>
 #define MAXSIZE 2100000
 
+using namespace std;
+
 void printmenu();
-int readfile(std::string filename, long data[]);
-int writefile(long data[], long size, std::string filename);
+void printarray(long data[], long size);
+int readfile(string infilename, long data[]);
+int writefile(long data[], long size, string outfilename);
+void swap(long& x, long& y);
 
 #endif

@@ -14,6 +14,8 @@
 #include "Christian/heapSort.h"
 #include "David/bubblesort.h" 
 #include "David/mergesort.h" 
+#include "Erela/selectionSort.h"
+#include "Erela/quickSort.h"
 
 using namespace std;
 
@@ -125,16 +127,21 @@ int main() {
                 break;
             }
 
+            // Selection Sort - Erela
             case 6:
-                // selection sort stuff
-                cout << "Selection sort has not been added yet.\n";
-                continue;
+                begin_time = clock();
+                selectionSort(wData, sz);
+                end_time = clock();
+                ofilename = "lab5_E_out.txt";
+                break;
 
+            // Quicksort - Erela
             case 7:
-                //quick sort stuff
-
-                cout << "Quick sort has not been added yet.\n";
-                continue;
+                begin_time = clock();
+                quickSort(wData, 0, sz - 1);
+                end_time = clock();
+                ofilename = "lab5_F_out.txt";
+                break;
 
             default:
                 continue;
