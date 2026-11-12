@@ -1,16 +1,133 @@
-/*
- * main.cpp
- *
- *  Created on: Nov 5, 2026
- *      Author: christian-francis
- */
+// Christian Francis, David Cunha, Erela Braddom
+// Lab 5, ECE 2161-001
+// Reads numbers, runs the selected sort, reports CPU time,
+// and saves the sorted results.
+// Adapted from the framework supplied by Dr. Sarvesh Kulkarni.
 
 #include <iostream>
+#include <ctime>
+#include <limits>
+#include "myheaders.h"
+#include "Christian/insertionSort.h"
+#include "Christian/heapSort.h"
+
+
 using namespace std;
 
+// Does the menu, input data, sorting timers, and output files
 int main() {
-    cout << "Hello World!" << endl;
+    int choice;
+    int sz = 0;
+    long data[MAXSIZE], wData[MAXSIZE];
+
+    double begin_time, end_time, cpu_time_used;
+    string ofilename;
+
+    while (true) {
+        printmenu();
+
+        // Check the user's menu selection
+        if (!(cin >> choice)) {
+            if (cin.eof()) {
+                return 0;
+            }
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter a menu number.\n";
+            continue;
+        }
+
+        if (choice == 0) {
+            cout << "Exiting program.\n";
+            return 0;
+        }
+
+        if (choice < 1 || choice > 7) {
+            cout << "Invalid selection.\n";
+            continue;
+        }
+
+        if (choice == 1) {
+            sz = readfile("lab5_input.txt", data);
+
+            if (sz < 0) {
+                cout << "Could not read the input file. Check the "
+                     << "filename, contents, and array capacity.\n";
+                sz = 0;
+            } else {
+                cout << "File size is: " << sz << '\n';
+            }
+
+            continue;
+        }
+
+        if (sz == 0) {
+            cout << "Read a nonempty input file using option 1 first.\n";
+            continue;
+        }
+
+        // Make sure to give every sort the same unsorted data.
+        for (int i = 0; i < sz; i++) {
+            wData[i] = data[i];
+        }
+
+        // Time only the selected sorting function
+        switch (choice) {
+            case 2:
+                begin_time = clock();
+                insertionSort(wData, sz);
+                end_time = clock();
+
+                ofilename = "lab5_A_out.txt";
+                break;
+
+            case 3:
+                begin_time = clock();
+                heapSort(wData, sz);
+                end_time = clock();
+
+                ofilename = "lab5_B_out.txt";
+                break;
+
+            case 4:
+                // bubble sort stuff
+
+                cout << "Bubble sort has not been added yet.\n";
+                continue;
+
+            case 5:
+                // merge sort stuff
+
+                cout << "Merge sort has not been added yet.\n";
+                continue;
+
+            case 6:
+                // selection sort stuff
+                cout << "Selection sort has not been added yet.\n";
+                continue;
+
+            case 7:
+                //quick sort stuff
+
+                cout << "Quick sort has not been added yet.\n";
+                continue;
+
+            default:
+                continue;
+        }
+
+        // CPU time in seconds.
+        cpu_time_used = (end_time - begin_time) / CLOCKS_PER_SEC;
+        cout << "Sort ran for " << cpu_time_used << " seconds.\n";
+
+        // Save the sorted data after stopping the timer.
+        if (writefile(wData, sz, ofilename) == -1) {
+            cout << "Could not write the output file.\n";
+        } else {
+            cout << "Output written to " << ofilename << '\n';
+        }
+    }
+
     return 0;
 }
-
-
