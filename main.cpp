@@ -1,3 +1,4 @@
+
 // Christian Francis, David Cunha, Erela Braddom
 // Lab 5, ECE 2161-001
 // Reads numbers, runs the selected sort, reports CPU time,
@@ -7,6 +8,7 @@
 #include <iostream>
 #include <ctime>
 #include <limits>
+#include <vector>
 #include "myheaders.h"
 #include "Christian/insertionSort.h"
 #include "Christian/heapSort.h"
@@ -90,18 +92,38 @@ int main() {
 
                 ofilename = "lab5_B_out.txt";
                 break;
+           
+            //bubble sort 
+            case 4: {
+                vector<long int> sortData(wData, wData + sz);
 
-            case 4:
-                // bubble sort stuff
+                begin_time = clock();
+                bubbleSort(sortData);
+                end_time = clock();
 
-                cout << "Bubble sort has not been added yet.\n";
-                continue;
+                for (int i = 0; i < sz; i++) {
+                    wData[i] = sortData[i];
+                }
 
-            case 5:
-                // merge sort stuff
+                ofilename = "lab5_C_out.txt";
+                break;
+            }
 
-                cout << "Merge sort has not been added yet.\n";
-                continue;
+            //merge sort 
+            case 5: {
+                vector<long int> sortData(wData, wData + sz);
+
+                begin_time = clock();
+                mergeSort(sortData, 0, sz - 1);
+                end_time = clock();
+
+                for (int i = 0; i < sz; i++) {
+                    wData[i] = sortData[i];
+                }
+
+                ofilename = "lab5_D_out.txt";
+                break;
+            }
 
             case 6:
                 // selection sort stuff
