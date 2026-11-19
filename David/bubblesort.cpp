@@ -1,5 +1,5 @@
 //bubble sort
-#include "BubbleSort.h"
+#include "bubblesort.h"
 #include <algorithm>
 #include <vector>
 
@@ -13,9 +13,12 @@ bool flag = false;
 
 //loop to compare adjacent elements and swap them if they are in the wrong order
 for (int j = 0; j < n - i - 1; j++) {
-if (values[j] > values[j + 1]) {
-flag = true;
-}
+	if (values[j] > values[j + 1]) {
+	    long temp = values[j];
+	    values[j] = values[j + 1];
+	    values[j + 1] = temp;
+	    flag = true;
+	}
 }
 
 if (!flag) {

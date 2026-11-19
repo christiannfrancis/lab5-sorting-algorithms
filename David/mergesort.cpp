@@ -1,5 +1,5 @@
 //merge sort
-#include "MergeSort.h"
+#include "mergesort.h"
 #include <vector>
 
 //Function to merge two subarrays of arr[]
